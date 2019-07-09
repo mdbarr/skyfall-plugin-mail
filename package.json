@@ -1,0 +1,19 @@
+{
+  "name": "@mdbarr/skyfall-plugin-mail",
+  "version": "0.1.0",
+  "description": "Skyfall Mail Sender Plugin",
+  "main": "index.js",
+  "repository": "git@github.com:mdbarr/skyfall-plugin-mail.git",
+  "author": "Mark Barr <mark@hyperingenuity.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "nodemailer": "^6.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1"
+  },
+  "scripts": {
+    "lint": "eslint index.js"
+  }
+}
