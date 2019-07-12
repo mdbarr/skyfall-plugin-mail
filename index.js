@@ -55,10 +55,12 @@ function Mail(skyfall) {
       send(event.data);
     });
 
-    skyfall.events.emit({
-      type: `mail:${ name }:configured`,
-      data: transport,
-      source: id
+    process.nextTick(() => {
+      skyfall.events.emit({
+        type: `mail:${ name }:configured`,
+        data: transport,
+        source: id
+      });
     });
 
     return transport;
