@@ -15,7 +15,7 @@ function Mail(skyfall) {
     return false;
   };
 
-  this.configure = (options) => {
+  this.mailer = (options) => {
     const id = skyfall.utils.id();
     const name = options.name || options.host;
 
