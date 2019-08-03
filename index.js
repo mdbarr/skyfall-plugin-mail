@@ -18,6 +18,7 @@ function Mail(skyfall) {
   this.mailer = (options) => {
     const id = skyfall.utils.id();
     const name = options.name || options.host;
+    const alias = skyfall.utils.alias(name);
 
     const mailer = nodemailer.createTransport(options);
 
@@ -41,7 +42,8 @@ function Mail(skyfall) {
 
     const transport = {
       id,
-      name
+      name,
+      alias
     };
 
     transports.set(id, transport);
@@ -49,6 +51,13 @@ function Mail(skyfall) {
 
     skyfall.utils.hidden(transport, 'send', (message) => {
       send(message);
+    });
+
+    Object.defineProperty(this, alias, {
+      configurable: false,
+      enumerable: false,
+      value: transport,
+      writable: false
     });
 
     skyfall.events.on(`mail:${ name }:send`, (event) => {
