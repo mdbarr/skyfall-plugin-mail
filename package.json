@@ -1,6 +1,6 @@
 {
   "name": "@mdbarr/skyfall-plugin-mail",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Skyfall Mail Sender Plugin",
   "main": "index.js",
   "repository": "git@github.com:mdbarr/skyfall-plugin-mail.git",
