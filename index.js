@@ -2,7 +2,7 @@
 
 const nodemailer = require('nodemailer');
 
-function Mail(skyfall) {
+function Mail (skyfall) {
   const transports = new Map();
   const names = new Map();
 
@@ -22,20 +22,20 @@ function Mail(skyfall) {
 
     const mailer = nodemailer.createTransport(options);
 
-    function send(message) {
+    function send (message) {
       mailer.sendMail(message).
         then((info) => {
           skyfall.events.emit({
             type: `mail:${ name }:sent`,
             data: info,
-            source: id
+            source: id,
           });
         }).
         catch((error) => {
           skyfall.events.emit({
             type: `mail:${ name }:error`,
             data: error,
-            source: id
+            source: id,
           });
         });
     }
@@ -43,7 +43,7 @@ function Mail(skyfall) {
     const transport = {
       id,
       name,
-      alias
+      alias,
     };
 
     transports.set(id, transport);
@@ -57,7 +57,7 @@ function Mail(skyfall) {
       configurable: false,
       enumerable: false,
       value: transport,
-      writable: false
+      writable: false,
     });
 
     skyfall.events.on(`mail:${ name }:send`, (event) => {
@@ -68,7 +68,7 @@ function Mail(skyfall) {
       skyfall.events.emit({
         type: `mail:${ name }:configured`,
         data: transport,
-        source: id
+        source: id,
       });
     });
 
@@ -80,5 +80,5 @@ module.exports = {
   name: 'mail',
   install: (skyfall, options) => {
     skyfall.mail = new Mail(skyfall, options);
-  }
+  },
 };
